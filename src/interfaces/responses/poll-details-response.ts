@@ -1,5 +1,5 @@
-import { Poll } from "../poll";
+import { Poll } from '../poll'
 
 export interface PollDetailsResponse {
-  poll: Poll;
+  poll: Poll
 }

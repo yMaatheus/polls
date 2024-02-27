@@ -1,5 +1,5 @@
 export interface PollOption {
-  id: string;
-  title: string;
-  score: number;
+  id: string
+  title: string
+  score: number
 }

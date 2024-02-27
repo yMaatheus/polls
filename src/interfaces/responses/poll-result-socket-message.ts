@@ -1,4 +1,4 @@
 export interface PollResultSocketMessage {
-  pollOptionId: string;
-  votes: number;
+  pollOptionId: string
+  votes: number
 }

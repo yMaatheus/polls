@@ -1,4 +1,4 @@
 export interface UserVoteOnPoll {
-  pollId: string;
-  pollOptionId: string;
+  pollId: string
+  pollOptionId: string
 }
