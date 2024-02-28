@@ -29,10 +29,12 @@ export default async function Page({ params }: PollDetailsPageParams) {
   const poll = await getPollDetails(id)
 
   return (
-    <div>
-      <h1>{poll.title}</h1>
+    <main className="flex flex-col flex-1 items-center justify-center h-full">
+      <div className="w-[90%] min-h-96 bg-neutral-900 rounded-xl space-y-12 p-2 md:p-6 md:w-[70%] lg:w-96">
+        <h1 className="font-semibold text-xl text-center mt-8">{poll.title}</h1>
 
-      <PollOptions poll={poll} />
-    </div>
+        <PollOptions poll={poll} />
+      </div>
+    </main>
   )
 }
