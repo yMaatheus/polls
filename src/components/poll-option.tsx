@@ -1,7 +1,9 @@
 'use client'
 
+import { Progress } from '@/components/ui/progress'
 import { PollOption } from '@/interfaces/poll-option'
 import { api } from '@/lib/api'
+import { useMemo } from 'react'
 import { Toggle } from './ui/toggle'
 import { toast } from './ui/use-toast'
 
@@ -10,6 +12,7 @@ type PollOptionProps = {
   pollOption: PollOption
   hasVoted: boolean
   setUserVoteOptionId: (pollOptionId: string) => void
+  totalVotes: number
 }
 
 export function PollOption({
@@ -17,6 +20,7 @@ export function PollOption({
   pollOption,
   hasVoted,
   setUserVoteOptionId,
+  totalVotes,
 }: PollOptionProps) {
   async function handleVote() {
     try {
@@ -46,13 +50,30 @@ export function PollOption({
     }
   }
 
+  const percentage =
+    useMemo(
+      () => (100 * pollOption.score) / totalVotes,
+      [pollOption, totalVotes],
+    ) || 0
+
   return (
     <Toggle
-      aria-label="Toggle italic"
       pressed={hasVoted}
       onPressedChange={handleVote}
+      variant="outline"
+      className="py-6"
+      size="xl"
     >
-      {pollOption.title} - {pollOption.score}
+      <div className="w-full flex flex-col gap-4">
+        <div className="w-full flex justify-between">
+          <span>{pollOption.title}</span>
+
+          <span>
+            {percentage.toFixed(2)}% ({pollOption.score})
+          </span>
+        </div>
+        <Progress value={percentage} />
+      </div>
     </Toggle>
   )
 }
