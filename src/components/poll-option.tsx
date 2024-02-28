@@ -32,14 +32,14 @@ export function PollOption({
     } catch (error: Error | unknown) {
       if (!(error instanceof Error)) {
         toast({
-          title: 'Votação Enquete',
+          title: 'Enquete',
           description: 'Falha ao tentar efetuar uma votação na enquete.',
           variant: 'destructive',
         })
         return
       }
       toast({
-        title: 'Votação Enquete',
+        title: 'Enquete',
         description: error.message,
         variant: 'destructive',
       })
