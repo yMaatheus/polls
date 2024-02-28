@@ -7,8 +7,11 @@ export async function api<T>(path: string, init?: RequestInit) {
   const response = await fetch(url, { credentials: 'include', ...init })
 
   if (!response.ok) {
-    console.error(response.statusText)
-    return
+    const { message } = await response.json()
+
+    if (!message) throw new Error(response.statusText)
+
+    throw new Error(message)
   }
 
   const data = (await response.json()) as T
