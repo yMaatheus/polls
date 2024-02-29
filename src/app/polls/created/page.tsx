@@ -43,29 +43,27 @@ export default function Page() {
   return (
     <TooltipProvider>
       <Tooltip>
-        <div className="flex flex-1 items-center justify-center h-full">
-          <div className="min-w-96 min-h-64 bg-neutral-900 rounded-lg flex flex-col justify-center items-center space-y-6 p-8">
-            <h1 className="font-semibold text-xl items-start">
-              Parabéns, Enquete criada com sucesso!
-            </h1>
-            <div className="flex flex-col items-center justify-center space-y-4">
-              <p className="text-center">
-                Compartilhe o link para que seus amigos possam votar.
-              </p>
+        <div className="min-w-96 min-h-64 bg-card rounded-lg flex flex-col justify-center items-center space-y-6 p-8">
+          <h1 className="font-semibold text-xl items-start">
+            Parabéns, Enquete criada com sucesso!
+          </h1>
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <p className="text-center">
+              Compartilhe o link para que seus amigos possam votar.
+            </p>
 
-              <div className="flex gap-4">
-                <Button variant="link">
-                  <Link href={`/polls/${pollId}`}>Ver Enquete</Link>
-                  <Link1Icon className="ml-2 h-4 w-4" />
+            <div className="flex gap-4">
+              <Button variant="link">
+                <Link href={`/polls/${pollId}`}>Ver Enquete</Link>
+                <Link1Icon className="ml-2 h-4 w-4" />
+              </Button>
+
+              <TooltipTrigger asChild>
+                <Button variant="link" onClick={handleCopyToClipboard}>
+                  Copiar Link
+                  <ClipboardIcon className="ml-2 h-4 w-4" />
                 </Button>
-
-                <TooltipTrigger asChild>
-                  <Button variant="link" onClick={handleCopyToClipboard}>
-                    Copiar Link
-                    <ClipboardIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </TooltipTrigger>
-              </div>
+              </TooltipTrigger>
             </div>
           </div>
         </div>

@@ -28,10 +28,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontSans.variable,
         )}
       >
-        <>
+        <main className="flex flex-col flex-1 items-center justify-center h-full">
           {children}
           <Toaster />
-        </>
+        </main>
       </body>
     </html>
   )
