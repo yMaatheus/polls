@@ -1,5 +1,6 @@
 import { PollDetailsResponse } from '@/interfaces/responses/poll-details-response'
 import { api } from '@/lib/api'
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { PollOptions } from './components/poll-options'
 
@@ -20,6 +21,16 @@ async function getPollDetails(id: string) {
     return poll
   } catch (error) {
     return redirect('/')
+  }
+}
+
+export async function generateMetadata({
+  params,
+}: PollDetailsPageParams): Promise<Metadata> {
+  const poll = await getPollDetails(params.id)
+
+  return {
+    title: poll.title,
   }
 }
 

@@ -10,7 +10,10 @@ export const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  title: 'Polls',
+  title: {
+    template: '%s | Enquete',
+    default: 'Enquete',
+  },
   description: 'Crie uma enquete e compartilhe com seus amigos!',
 }
 
