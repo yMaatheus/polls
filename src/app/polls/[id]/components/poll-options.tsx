@@ -25,8 +25,8 @@ export function PollOptions({ poll }: PollOptionsProps) {
     async function initSocketConnection() {
       const webSocket = new WebSocket(`${BASE_URL}/polls/${poll.id}/results`)
 
-      webSocket.onopen = () => console.log('Websocket opened!')
-      webSocket.onclose = () => console.log(`Websocket closed!`)
+      // webSocket.onopen = () => console.log('Websocket opened!')
+      // webSocket.onclose = () => console.log(`Websocket closed!`)
       webSocket.onmessage = (message) => {
         const optionUpdate = JSON.parse(message.data) as PollResultSocketMessage
 
