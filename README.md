@@ -13,4 +13,5 @@ Este projeto é uma extensão do [Polls Backend](https://github.com/yMaatheus/nl
 * [Yarn](https://www.npmjs.com/)
 * [React](https://react.dev/)
 * [Next.js](https://nextjs.org/)
+* [Shadcn/ui](https://ui.shadcn.com/)
 * [Typescript](https://www.typescriptlang.org/)
