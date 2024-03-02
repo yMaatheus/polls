@@ -18,17 +18,20 @@ type PollOptionsProps = {
 }
 
 export function PollOptions({ poll }: PollOptionsProps) {
-  const [webSocket, setWebSocket] = useState<WebSocket>()
   const [options, setOptions] = useState<PollOptionType[]>(sort(poll.options))
   const [userVoteOptionId, setUserVoteOptionId] = useState<string | null>(null)
 
   useEffect(() => {
     async function initSocketConnection() {
       const webSocket = new WebSocket(`${BASE_URL}/polls/${poll.id}/results`)
-      setWebSocket(webSocket)
 
       // webSocket.onopen = () => console.log('Websocket opened!')
       // webSocket.onclose = () => console.log(`Websocket closed!`)
+      webSocket.onmessage = (message) => {
+        const optionUpdate = JSON.parse(message.data) as PollResultSocketMessage
+
+        handleUpdateOption(optionUpdate)
+      }
     }
 
     async function getUserVoteOption() {
@@ -46,14 +49,6 @@ export function PollOptions({ poll }: PollOptionsProps) {
     initSocketConnection()
     getUserVoteOption()
   }, [poll])
-
-  if (webSocket) {
-    webSocket.onmessage = (message) => {
-      const optionUpdate = JSON.parse(message.data) as PollResultSocketMessage
-
-      handleUpdateOption(optionUpdate)
-    }
-  }
 
   async function handleUpdateOption(optionUpdate: PollResultSocketMessage) {
     setOptions((prevState) =>
